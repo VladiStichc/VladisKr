@@ -277,6 +277,9 @@ ul { list-style: none; }
     margin-right: auto;
 }
 .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+.hero-buttons-grid { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+.hero-btn-col { display: flex; flex-direction: column; gap: 12px; }
+.hero-btn-col .btn { min-width: 200px; text-align: center; }
 .hero-stats {
     display: flex;
     justify-content: center;
@@ -1144,6 +1147,8 @@ ul { list-style: none; }
     .hero-title { font-size: 2.2rem; }
     .hero-subtitle { font-size: 1rem; }
     .hero-buttons { flex-direction: column; align-items: center; }
+    .hero-buttons-grid { flex-direction: column; align-items: center; gap: 12px; }
+    .hero-btn-col { width: 100%; align-items: center; }
     .hero-stats { gap: 24px; }
     .hero-stat-number { font-size: 2rem; }
     .hero-stat-divider { display: none; }
