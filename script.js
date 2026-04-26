@@ -203,12 +203,9 @@ if (contactModal) contactModal.addEventListener('click', function (e) {
 });
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && contactModal.classList.contains('active')) closeContactModal();
-    if (e.key === 'Escape' && auditModal.classList.contains('active')) closeAuditModal();
 });
 
 /* ===== AUDIT FORM ===== */
-const auditModal = document.getElementById('auditModal');
-const auditClose = document.getElementById('auditClose');
 const auditBack = document.getElementById('auditBack');
 const auditNext = document.getElementById('auditNext');
 const auditNav = document.getElementById('auditNav');
@@ -218,22 +215,8 @@ const auditFileInput = document.getElementById('auditFile');
 const auditFileName = document.getElementById('auditFileName');
 let auditCur = 0;
 
-const TG_BOT_TOKEN = '';
+const TG_BOT_TOKEN = '8782883520:AAGADAQIEsfwE0BI9MlA-LQyWSKuJ9flcT4';
 const TG_CHAT_ID = '';
-
-function openAuditModal() {
-    auditModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-function closeAuditModal() {
-    auditModal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-if (auditClose) auditClose.addEventListener('click', closeAuditModal);
-if (auditModal) auditModal.addEventListener('click', function (e) {
-    if (e.target === auditModal) closeAuditModal();
-});
 
 function updateAuditUI() {
     auditSteps.forEach(function (s) { s.classList.remove('active'); });
