@@ -203,4 +203,117 @@ if (contactModal) contactModal.addEventListener('click', function (e) {
 });
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && contactModal.classList.contains('active')) closeContactModal();
+    if (e.key === 'Escape' && auditModal.classList.contains('active')) closeAuditModal();
 });
+
+/* ===== AUDIT FORM ===== */
+const auditModal = document.getElementById('auditModal');
+const auditClose = document.getElementById('auditClose');
+const auditBack = document.getElementById('auditBack');
+const auditNext = document.getElementById('auditNext');
+const auditNav = document.getElementById('auditNav');
+const auditPercent = document.getElementById('auditPercent');
+const auditSteps = document.querySelectorAll('.audit-step');
+const auditFileInput = document.getElementById('auditFile');
+const auditFileName = document.getElementById('auditFileName');
+let auditCur = 0;
+
+const TG_BOT_TOKEN = '';
+const TG_CHAT_ID = '';
+
+function openAuditModal() {
+    auditModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeAuditModal() {
+    auditModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (auditClose) auditClose.addEventListener('click', closeAuditModal);
+if (auditModal) auditModal.addEventListener('click', function (e) {
+    if (e.target === auditModal) closeAuditModal();
+});
+
+function updateAuditUI() {
+    auditSteps.forEach(function (s) { s.classList.remove('active'); });
+    var stepEl = document.querySelector('.audit-step[data-step="' + auditCur + '"]');
+    if (stepEl) stepEl.classList.add('active');
+
+    var pct = Math.round((auditCur / 6) * 100);
+    auditPercent.textContent = pct + '%';
+
+    for (var i = 0; i < 6; i++) {
+        var seg = document.getElementById('seg' + i);
+        seg.classList.remove('done', 'current');
+        if (i < auditCur) seg.classList.add('done');
+        else if (i === auditCur) seg.classList.add('current');
+    }
+
+    auditBack.style.display = auditCur === 0 ? 'none' : '';
+    auditNav.style.display = auditCur >= 6 ? 'none' : '';
+    auditNext.textContent = auditCur === 5 ? 'Отправить' : 'Далее';
+}
+
+if (auditBack) auditBack.addEventListener('click', function () {
+    if (auditCur > 0) { auditCur--; updateAuditUI(); }
+});
+
+if (auditNext) auditNext.addEventListener('click', function () {
+    if (auditCur === 0) {
+        var biz = document.getElementById('auditBusiness').value.trim();
+        var consent = document.getElementById('auditConsent').checked;
+        if (!biz) { document.getElementById('auditBusiness').classList.add('error'); return; }
+        document.getElementById('auditBusiness').classList.remove('error');
+        if (!consent) { alert('Пожалуйста, дайте согласие на обработку данных'); return; }
+    }
+    if (auditCur === 5) {
+        sendAuditForm();
+        return;
+    }
+    auditCur++;
+    updateAuditUI();
+});
+
+if (auditFileInput) auditFileInput.addEventListener('change', function () {
+    if (this.files.length > 0) auditFileName.textContent = this.files[0].name;
+    else auditFileName.textContent = '';
+});
+
+function sendAuditForm() {
+    var data = {
+        business: document.getElementById('auditBusiness').value.trim(),
+        city: document.getElementById('auditCity').value.trim(),
+        name: document.getElementById('auditName').value.trim(),
+        phone: document.getElementById('auditPhone').value.trim(),
+        avito: document.getElementById('auditAvito').value.trim(),
+        file: auditFileInput.files.length > 0 ? auditFileInput.files[0].name : 'Нет',
+        comment: document.getElementById('auditComment').value.trim()
+    };
+
+    var msg = '📋 *Новая заявка на аудит*\n\n'
+        + '🏢 *Бизнес:* ' + data.business + '\n'
+        + '📍 *Город:* ' + (data.city || '—') + '\n'
+        + '👤 *Имя:* ' + (data.name || '—') + '\n'
+        + '📞 *Телефон:* ' + (data.phone || '—') + '\n'
+        + '🔗 *Авито:* ' + (data.avito || '—') + '\n'
+        + '📎 *Файл:* ' + data.file + '\n'
+        + '💬 *Комментарий:* ' + (data.comment || '—');
+
+    if (TG_BOT_TOKEN && TG_CHAT_ID) {
+        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: TG_CHAT_ID,
+                text: msg,
+                parse_mode: 'Markdown'
+            })
+        }).catch(function () {});
+    }
+
+    auditCur = 6;
+    updateAuditUI();
+}
+
+updateAuditUI();

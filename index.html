@@ -47,6 +47,7 @@
         </p>
         <div class="hero-buttons animate-slide-up delay-2">
             <a href="#" class="btn btn-primary btn-glow btn-3d" onclick="openContactModal();return false;">Связаться</a>
+            <a href="#" class="btn btn-outline btn-audit-glow" onclick="openAuditModal();return false;">Бесплатный аудит</a>
             <a href="#pricing" class="btn btn-outline">Смотреть тарифы</a>
             <a href="#cases" class="btn btn-outline">Смотреть кейсы</a>
         </div>
@@ -860,6 +861,92 @@
 <a href="#" class="floating-tg" aria-label="Связаться" onclick="openContactModal();return false;">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </a>
+
+<!-- ===== AUDIT FORM MODAL ===== -->
+<div class="audit-overlay" id="auditModal">
+    <div class="audit-modal">
+        <button class="audit-close" id="auditClose">&times;</button>
+        <h2 class="audit-title">Ответьте на 6 вопросов и получите <span class="audit-highlight">бесплатный аудит</span> и предложение по развитию вашего бизнеса уже сегодня</h2>
+
+        <div class="audit-progress">
+            <div class="audit-progress-label" id="auditPercent">0%</div>
+            <div class="audit-progress-bar">
+                <div class="audit-progress-seg" id="seg0"></div>
+                <div class="audit-progress-seg" id="seg1"></div>
+                <div class="audit-progress-seg" id="seg2"></div>
+                <div class="audit-progress-seg" id="seg3"></div>
+                <div class="audit-progress-seg" id="seg4"></div>
+                <div class="audit-progress-seg" id="seg5"></div>
+            </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="audit-step active" data-step="0">
+            <div class="audit-step-label">ВОПРОС 1 ИЗ 6</div>
+            <h3 class="audit-question">Вид вашего бизнеса?</h3>
+            <input type="text" class="audit-input" id="auditBusiness" placeholder="Например: строительство, мебель, услуги..." required>
+            <label class="audit-checkbox">
+                <input type="checkbox" id="auditConsent" checked>
+                <span>Я согласен с обработкой персональных данных</span>
+            </label>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="audit-step" data-step="1">
+            <div class="audit-step-label">ВОПРОС 2 ИЗ 6</div>
+            <h3 class="audit-question">Ваш город?</h3>
+            <input type="text" class="audit-input" id="auditCity" placeholder="Например: Москва, Санкт-Петербург...">
+        </div>
+
+        <!-- Step 3 -->
+        <div class="audit-step" data-step="2">
+            <div class="audit-step-label">ВОПРОС 3 ИЗ 6</div>
+            <h3 class="audit-question">Ваше имя?</h3>
+            <input type="text" class="audit-input" id="auditName" placeholder="Ваше имя">
+            <h3 class="audit-question" style="margin-top: 20px;">Ваш телефон?</h3>
+            <input type="tel" class="audit-input" id="auditPhone" placeholder="+7 (___) ___-__-__">
+        </div>
+
+        <!-- Step 4 -->
+        <div class="audit-step" data-step="3">
+            <div class="audit-step-label">ВОПРОС 4 ИЗ 6</div>
+            <h3 class="audit-question">Ссылка на сайт и кабинет Авито?</h3>
+            <input type="text" class="audit-input" id="auditAvito" placeholder="https://avito.ru/...">
+        </div>
+
+        <!-- Step 5 -->
+        <div class="audit-step" data-step="4">
+            <div class="audit-step-label">ВОПРОС 5 ИЗ 6</div>
+            <h3 class="audit-question">XLS отчет статистики за последние 30 дней из AvitoPro (при наличии)</h3>
+            <div class="audit-file-wrap">
+                <label class="audit-file-btn">
+                    <input type="file" id="auditFile" accept=".xls,.xlsx,.csv" hidden>
+                    <span>Выберите файл...</span>
+                </label>
+                <span class="audit-file-name" id="auditFileName"></span>
+            </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="audit-step" data-step="5">
+            <div class="audit-step-label">ВОПРОС 6 ИЗ 6</div>
+            <h3 class="audit-question">Комментарий (по желанию)</h3>
+            <textarea class="audit-input audit-textarea" id="auditComment" placeholder="Оставьте комментарий"></textarea>
+        </div>
+
+        <!-- Success -->
+        <div class="audit-step audit-success" data-step="6">
+            <div class="audit-success-icon">&#10003;</div>
+            <h3 class="audit-question">Заявка отправлена!</h3>
+            <p style="color: #666; margin-top: 8px;">Мы свяжемся с вами в ближайшее время для проведения бесплатного аудита.</p>
+        </div>
+
+        <div class="audit-nav" id="auditNav">
+            <button class="audit-btn audit-btn-back" id="auditBack">Назад</button>
+            <button class="audit-btn audit-btn-next" id="auditNext">Далее</button>
+        </div>
+    </div>
+</div>
 
 <!-- ===== CONTACT MODAL ===== -->
 <div class="contact-modal-overlay" id="contactModal">
