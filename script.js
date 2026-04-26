@@ -182,3 +182,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+/* ===== CONTACT MODAL ===== */
+const contactModal = document.getElementById('contactModal');
+const contactModalClose = document.getElementById('contactModalClose');
+
+function openContactModal() {
+    contactModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeContactModal() {
+    contactModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (contactModalClose) contactModalClose.addEventListener('click', closeContactModal);
+if (contactModal) contactModal.addEventListener('click', function (e) {
+    if (e.target === contactModal) closeContactModal();
+});
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && contactModal.classList.contains('active')) closeContactModal();
+});
