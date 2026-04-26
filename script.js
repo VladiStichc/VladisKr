@@ -329,7 +329,7 @@ if (qfSubmit) qfSubmit.addEventListener('click', function () {
         + '👤 <b>Имя:</b> ' + (name || '—') + '\n'
         + '📞 <b>Телефон:</b> ' + (phone || '—') + '\n'
         + '📧 <b>Email:</b> ' + (email || '—') + '\n'
-        + '🏢 <b>Сфера деятельности:</b> ' + (niche || '—');
+        + '🏢 <b>Чем занимаетесь:</b> ' + (niche || '—');
 
     if (TG_BOT_TOKEN && TG_CHAT_ID) {
         fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
