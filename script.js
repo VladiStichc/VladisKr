@@ -294,6 +294,18 @@ function sendAuditForm() {
             })
         }).then(function (r) { return r.json(); }).then(function (d) {
             if (!d.ok) console.error('Telegram error:', d);
+            if (auditFileInput.files.length > 0) {
+                var fd = new FormData();
+                fd.append('chat_id', TG_CHAT_ID);
+                fd.append('document', auditFileInput.files[0]);
+                fd.append('caption', '📎 Файл к заявке: ' + data.business);
+                fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendDocument', {
+                    method: 'POST',
+                    body: fd
+                }).then(function (r2) { return r2.json(); }).then(function (d2) {
+                    if (!d2.ok) console.error('Telegram file error:', d2);
+                }).catch(function (e2) { console.error('Telegram file fetch error:', e2); });
+            }
         }).catch(function (e) { console.error('Telegram fetch error:', e); });
     }
 
