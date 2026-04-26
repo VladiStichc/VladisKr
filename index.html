@@ -6,7 +6,7 @@
     <title>AviTraffic — Продвижение на Авито</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Onest:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260424m">
+    <link rel="stylesheet" href="styles.css?v=20260424n">
 </head>
 <body>
 
@@ -419,7 +419,7 @@
                     <li>Рабочий чат с командой</li>
                     <li>Ежемесячная отчётность</li>
                 </ul>
-                <a href="#" class="btn btn-outline btn-block" onclick="openContactModal();return false;">Выбрать</a>
+                <a href="#" class="btn btn-outline btn-block" onclick="openTariffModal('Комфортный');return false;">Выбрать</a>
             </div>
             <!-- Optimal -->
             <div class="pricing-card pricing-popular animate-on-scroll" style="--delay: 1">
@@ -446,7 +446,7 @@
                     <li>Взаимодействие с поддержкой Авито</li>
                     <li>Еженедельная отчётность</li>
                 </ul>
-                <a href="#" class="btn btn-primary btn-glow btn-block" onclick="openContactModal();return false;">Выбрать</a>
+                <a href="#" class="btn btn-primary btn-glow btn-block" onclick="openTariffModal('Оптимальный');return false;">Выбрать</a>
             </div>
             <!-- Premium -->
             <div class="pricing-card animate-on-scroll" style="--delay: 2">
@@ -469,7 +469,7 @@
                     <li>Дорожная карта проекта</li>
                     <li>Подключение персонального менеджера Авито</li>
                 </ul>
-                <a href="#" class="btn btn-outline btn-block" onclick="openContactModal();return false;">Выбрать</a>
+                <a href="#" class="btn btn-outline btn-block" onclick="openTariffModal('Премиальный');return false;">Выбрать</a>
             </div>
         </div>
     </div>
@@ -985,6 +985,26 @@
 </a>
 
 <!-- ===== CONTACT MODAL ===== -->
+<!-- ===== TARIFF MODAL ===== -->
+<div class="contact-modal-overlay" id="tariffModal">
+    <div class="contact-modal" style="max-width: 480px;">
+        <button class="contact-modal-close" id="tariffModalClose">&times;</button>
+        <h3 class="contact-modal-title" id="tariffModalTitle">Заявка на тариф</h3>
+        <p class="contact-modal-subtitle">Заполните форму и мы свяжемся с вами</p>
+        <div class="tariff-form-fields" id="tariffFormFields">
+            <input type="text" class="audit-input" id="tfName" placeholder="Ваше имя">
+            <input type="tel" class="audit-input" id="tfPhone" placeholder="+7 (___) ___-__-__">
+            <input type="text" class="audit-input" id="tfOrg" placeholder="Название вашей организации">
+            <textarea class="audit-input" id="tfComment" placeholder="Комментарий" rows="3" style="resize:vertical;"></textarea>
+            <button class="audit-btn audit-btn-next btn-glow" id="tfSubmit" style="width:100%;margin-top:8px;">Отправить</button>
+        </div>
+        <div id="tariffFormSuccess" style="display:none;text-align:center;padding:20px 0;">
+            <div class="audit-success-icon" style="width:56px;height:56px;font-size:28px;margin:0 auto;">&#10003;</div>
+            <p style="color:#fff;font-weight:700;font-size:1.1rem;margin-top:12px;">Заявка отправлена!</p>
+        </div>
+    </div>
+</div>
+
 <div class="contact-modal-overlay" id="contactModal">
     <div class="contact-modal">
         <button class="contact-modal-close" id="contactModalClose">&times;</button>
@@ -1008,6 +1028,6 @@
     </div>
 </div>
 
-<script src="script.js?v=20260424l"></script>
+<script src="script.js?v=20260424n"></script>
 </body>
 </html>

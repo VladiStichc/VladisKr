@@ -317,6 +317,69 @@ function sendAuditForm() {
 
 updateAuditUI();
 
+/* ===== TARIFF MODAL ===== */
+var tariffModal = document.getElementById('tariffModal');
+var tariffModalClose = document.getElementById('tariffModalClose');
+var tariffModalTitle = document.getElementById('tariffModalTitle');
+var selectedTariff = '';
+
+function openTariffModal(tariffName) {
+    selectedTariff = tariffName;
+    tariffModalTitle.textContent = 'Заявка — тариф «' + tariffName + '»';
+    document.getElementById('tariffFormFields').style.display = '';
+    document.getElementById('tariffFormSuccess').style.display = 'none';
+    document.getElementById('tfName').value = '';
+    document.getElementById('tfPhone').value = '';
+    document.getElementById('tfOrg').value = '';
+    document.getElementById('tfComment').value = '';
+    tariffModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+tariffModalClose.addEventListener('click', function () {
+    tariffModal.classList.remove('active');
+    document.body.style.overflow = '';
+});
+tariffModal.addEventListener('click', function (e) {
+    if (e.target === tariffModal) {
+        tariffModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && tariffModal.classList.contains('active')) {
+        tariffModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+document.getElementById('tfSubmit').addEventListener('click', function () {
+    var name = document.getElementById('tfName').value.trim();
+    var phone = document.getElementById('tfPhone').value.trim();
+    var org = document.getElementById('tfOrg').value.trim();
+    var comment = document.getElementById('tfComment').value.trim();
+    if (!name && !phone) { document.getElementById('tfName').classList.add('error'); return; }
+    document.getElementById('tfName').classList.remove('error');
+
+    var msg = '📦 <b>Заявка на тариф</b>\n\n'
+        + '💼 <b>Тариф:</b> ' + selectedTariff + '\n'
+        + '👤 <b>Имя:</b> ' + (name || '—') + '\n'
+        + '📞 <b>Телефон:</b> ' + (phone || '—') + '\n'
+        + '🏢 <b>Организация:</b> ' + (org || '—') + '\n'
+        + '💬 <b>Комментарий:</b> ' + (comment || '—');
+
+    if (TG_BOT_TOKEN && TG_CHAT_ID) {
+        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' })
+        }).catch(function () {});
+    }
+
+    document.getElementById('tariffFormFields').style.display = 'none';
+    document.getElementById('tariffFormSuccess').style.display = 'block';
+});
+
 /* ===== QUICK CONTACT FORM ===== */
 var qfSubmit = document.getElementById('qfSubmit');
 if (qfSubmit) qfSubmit.addEventListener('click', function () {

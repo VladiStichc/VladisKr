@@ -1526,6 +1526,14 @@ ul { list-style: none; }
     .audit-btn { width: 100%; text-align: center; }
 }
 
+/* ===== TARIFF FORM MODAL ===== */
+.tariff-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+}
+
 /* ===== QUICK CONTACT FORM ===== */
 .quick-form-card {
     background: linear-gradient(145deg, rgba(30, 20, 50, 0.6), rgba(15, 10, 30, 0.6));
