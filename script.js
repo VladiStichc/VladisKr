@@ -69,62 +69,46 @@ const heroObserver = new IntersectionObserver((entries) => {
 const heroStats = document.querySelector('.hero-stats');
 if (heroStats) heroObserver.observe(heroStats);
 
-/* ===== CASES CAROUSEL ===== */
-const track = document.getElementById('casesTrack');
-const slides = track ? track.querySelectorAll('.case-slide') : [];
-const prevBtn = document.getElementById('casesPrev');
-const nextBtn = document.getElementById('casesNext');
-const dotsContainer = document.getElementById('casesDots');
-let currentSlide = 0;
+/* ===== CASES CAROUSEL (16 slides) ===== */
+const ncTrack = document.getElementById('ncTrack');
+const ncDotsEl = document.getElementById('ncDots');
+const ncPrev = document.getElementById('ncPrev');
+const ncNext = document.getElementById('ncNext');
+const ncCtop = document.getElementById('ncCtop');
+const ncSlides = ncTrack ? ncTrack.querySelectorAll('.nc-slide') : [];
+const ncN = ncSlides.length;
+let ncCur = 0;
 
-if (slides.length > 0) {
-    slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
+if (ncN > 0) {
+    ncSlides.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'nc-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => ncGo(i));
+        ncDotsEl.appendChild(d);
     });
 }
 
-function goToSlide(index) {
-    currentSlide = index;
-    track.style.transform = `translateX(-${index * 100}%)`;
-    document.querySelectorAll('.cases-dots .dot').forEach((d, i) => {
-        d.classList.toggle('active', i === index);
-    });
+function ncGo(n) {
+    ncCur = n;
+    ncTrack.style.transform = `translateX(-${ncCur * 100}%)`;
+    document.querySelectorAll('.nc-dot').forEach((d, i) => d.classList.toggle('active', i === ncCur));
+    if (ncCtop) ncCtop.textContent = `${ncCur + 1} / ${ncN}`;
+    if (ncPrev) ncPrev.disabled = ncCur === 0;
+    if (ncNext) ncNext.disabled = ncCur === ncN - 1;
 }
 
-if (prevBtn) prevBtn.addEventListener('click', () => {
-    goToSlide(currentSlide > 0 ? currentSlide - 1 : slides.length - 1);
-});
-if (nextBtn) nextBtn.addEventListener('click', () => {
-    goToSlide(currentSlide < slides.length - 1 ? currentSlide + 1 : 0);
-});
+if (ncPrev) ncPrev.addEventListener('click', () => ncCur > 0 && ncGo(ncCur - 1));
+if (ncNext) ncNext.addEventListener('click', () => ncCur < ncN - 1 && ncGo(ncCur + 1));
 
-/* Touch swipe for carousel */
-let touchStartX = 0;
-let touchEndX = 0;
-if (track) {
-    track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) goToSlide(Math.min(currentSlide + 1, slides.length - 1));
-            else goToSlide(Math.max(currentSlide - 1, 0));
-        }
+/* Touch swipe for new carousel */
+let ncSx = 0;
+if (ncTrack) {
+    ncTrack.parentElement.addEventListener('touchstart', e => { ncSx = e.touches[0].clientX; }, { passive: true });
+    ncTrack.parentElement.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - ncSx;
+        if (dx < -40 && ncCur < ncN - 1) ncGo(ncCur + 1);
+        if (dx > 40 && ncCur > 0) ncGo(ncCur - 1);
     }, { passive: true });
-}
-
-/* Auto-advance carousel */
-let carouselInterval = setInterval(() => {
-    if (slides.length > 0) goToSlide((currentSlide + 1) % slides.length);
-}, 6000);
-if (track) {
-    track.addEventListener('mouseenter', () => clearInterval(carouselInterval));
-    track.addEventListener('mouseleave', () => {
-        carouselInterval = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 6000);
-    });
 }
 
 /* ===== LIGHTBOX ===== */
