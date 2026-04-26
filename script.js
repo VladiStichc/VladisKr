@@ -7,8 +7,10 @@ window.addEventListener('scroll', () => {
 /* ===== MOBILE MENU ===== */
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
+const navCtaGroup = document.querySelector('.nav-cta-group');
 navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
+    if (navCtaGroup) navCtaGroup.classList.toggle('active');
     const spans = navToggle.querySelectorAll('span');
     if (navLinks.classList.contains('active')) {
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
