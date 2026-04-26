@@ -274,14 +274,14 @@ function sendAuditForm() {
         comment: document.getElementById('auditComment').value.trim()
     };
 
-    var msg = '📋 *Новая заявка на аудит*\n\n'
-        + '🏢 *Бизнес:* ' + data.business + '\n'
-        + '📍 *Город:* ' + (data.city || '—') + '\n'
-        + '👤 *Имя:* ' + (data.name || '—') + '\n'
-        + '📞 *Телефон:* ' + (data.phone || '—') + '\n'
-        + '🔗 *Авито:* ' + (data.avito || '—') + '\n'
-        + '📎 *Файл:* ' + data.file + '\n'
-        + '💬 *Комментарий:* ' + (data.comment || '—');
+    var msg = '📋 <b>Новая заявка на аудит</b>\n\n'
+        + '🏢 <b>Бизнес:</b> ' + data.business + '\n'
+        + '📍 <b>Город:</b> ' + (data.city || '—') + '\n'
+        + '👤 <b>Имя:</b> ' + (data.name || '—') + '\n'
+        + '📞 <b>Телефон:</b> ' + (data.phone || '—') + '\n'
+        + '🔗 <b>Авито:</b> ' + (data.avito || '—') + '\n'
+        + '📎 <b>Файл:</b> ' + data.file + '\n'
+        + '💬 <b>Комментарий:</b> ' + (data.comment || '—');
 
     if (TG_BOT_TOKEN && TG_CHAT_ID) {
         fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
@@ -290,9 +290,11 @@ function sendAuditForm() {
             body: JSON.stringify({
                 chat_id: TG_CHAT_ID,
                 text: msg,
-                parse_mode: 'Markdown'
+                parse_mode: 'HTML'
             })
-        }).catch(function () {});
+        }).then(function (r) { return r.json(); }).then(function (d) {
+            if (!d.ok) console.error('Telegram error:', d);
+        }).catch(function (e) { console.error('Telegram fetch error:', e); });
     }
 
     auditCur = 6;
