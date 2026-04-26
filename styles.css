@@ -1526,6 +1526,65 @@ ul { list-style: none; }
     .audit-btn { width: 100%; text-align: center; }
 }
 
+/* ===== REVIEWS ===== */
+.reviews-sub { font-size: 1rem; color: rgba(255,255,255,0.35); margin-top: 8px; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.review-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 28px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+}
+.review-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.review-card:hover { border-color: rgba(139, 92, 246, 0.25); transform: translateY(-3px); }
+.review-card:hover::before { opacity: 1; }
+.review-stars { display: flex; gap: 4px; margin-bottom: 16px; }
+.review-star { width: 16px; height: 16px; fill: #f59e0b; }
+.review-quote {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 1;
+}
+.review-quote::before {
+    content: '\201C';
+    font-size: 48px;
+    line-height: 0;
+    vertical-align: -18px;
+    color: rgba(139, 92, 246, 0.35);
+    font-weight: 900;
+    margin-right: 2px;
+}
+.review-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    margin-bottom: 18px;
+}
+.review-company { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
+.review-logo {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.review-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.9); line-height: 1.2; }
+.review-role { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .reviews-grid { grid-template-columns: 1fr; } }
+
 /* ===== TARIFF FORM MODAL ===== */
 .tariff-form-fields {
     display: flex;
