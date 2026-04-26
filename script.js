@@ -321,13 +321,15 @@ if (qfSubmit) qfSubmit.addEventListener('click', function () {
     var name = document.getElementById('qfName').value.trim();
     var phone = document.getElementById('qfPhone').value.trim();
     var email = document.getElementById('qfEmail').value.trim();
+    var niche = document.getElementById('qfNiche').value.trim();
     if (!name && !phone) { document.getElementById('qfName').classList.add('error'); return; }
     document.getElementById('qfName').classList.remove('error');
 
     var msg = '📩 <b>Новая заявка с сайта</b>\n\n'
         + '👤 <b>Имя:</b> ' + (name || '—') + '\n'
         + '📞 <b>Телефон:</b> ' + (phone || '—') + '\n'
-        + '📧 <b>Email:</b> ' + (email || '—');
+        + '📧 <b>Email:</b> ' + (email || '—') + '\n'
+        + '🏢 <b>Сфера деятельности:</b> ' + (niche || '—');
 
     if (TG_BOT_TOKEN && TG_CHAT_ID) {
         fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
