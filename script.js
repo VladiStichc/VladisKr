@@ -314,3 +314,31 @@ function sendAuditForm() {
 }
 
 updateAuditUI();
+
+/* ===== QUICK CONTACT FORM ===== */
+var qfSubmit = document.getElementById('qfSubmit');
+if (qfSubmit) qfSubmit.addEventListener('click', function () {
+    var name = document.getElementById('qfName').value.trim();
+    var phone = document.getElementById('qfPhone').value.trim();
+    var email = document.getElementById('qfEmail').value.trim();
+    if (!name && !phone) { document.getElementById('qfName').classList.add('error'); return; }
+    document.getElementById('qfName').classList.remove('error');
+
+    var msg = '📩 <b>Новая заявка с сайта</b>\n\n'
+        + '👤 <b>Имя:</b> ' + (name || '—') + '\n'
+        + '📞 <b>Телефон:</b> ' + (phone || '—') + '\n'
+        + '📧 <b>Email:</b> ' + (email || '—');
+
+    if (TG_BOT_TOKEN && TG_CHAT_ID) {
+        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' })
+        }).catch(function () {});
+    }
+
+    document.getElementById('qfSubmit').style.display = 'none';
+    document.querySelector('.quick-form-fields').style.display = 'none';
+    document.querySelector('.quick-form-desc').style.display = 'none';
+    document.getElementById('qfSuccess').style.display = 'block';
+});
