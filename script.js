@@ -216,7 +216,7 @@ const auditFileName = document.getElementById('auditFileName');
 let auditCur = 0;
 
 const TG_BOT_TOKEN = '8782883520:AAGADAQIEsfwE0BI9MlA-LQyWSKuJ9flcT4';
-const TG_CHAT_ID = '';
+const TG_CHAT_ID = '1256835529';
 
 function updateAuditUI() {
     auditSteps.forEach(function (s) { s.classList.remove('active'); });
