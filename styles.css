@@ -128,7 +128,7 @@ ul { list-style: none; }
     white-space: nowrap;
 }
 .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
-.nav-logo-img { width: auto !important; height: 32px !important; border-radius: 0 !important; }
+.nav-logo-img { width: auto !important; height: 44px !important; border-radius: 0 !important; }
 .nav-links {
     display: flex;
     gap: 28px;
@@ -1125,6 +1125,7 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
+    .nav-logo-img { height: 36px !important; }
     .nav-links, .nav-cta, .nav-cta-group { display: none; }
     .nav-toggle { display: flex; }
     .nav-links.active {
