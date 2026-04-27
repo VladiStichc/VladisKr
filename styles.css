@@ -262,12 +262,117 @@ ul { list-style: none; }
     letter-spacing: 2px;
     font-weight: 800;
 }
+
+/* Avito-style badge */
+.hero-badge-avito {
+    font-size: 2.8rem;
+    padding: 16px 48px;
+    letter-spacing: 3px;
+    font-weight: 900;
+    background: rgba(0, 170, 255, 0.1);
+    border: 2px solid rgba(0, 170, 255, 0.3);
+    border-radius: 60px;
+    margin-bottom: 32px;
+}
+.avito-logo-text {
+    font-weight: 900;
+    color: #fff;
+}
+.avito-logo-text.avito-v { color: #00AAFF; }
+.avito-logo-text.avito-i { color: #97CF26; }
+.avito-logo-text.avito-r { color: #FF6163; }
+.avito-logo-text.avito-a2 { color: #A169F7; }
+
+/* Avito floating labels */
+.avito-label {
+    position: absolute;
+    z-index: 2;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    animation: float 4s ease-in-out infinite, fadeIn 1s ease forwards;
+    pointer-events: none;
+}
+.avito-label-1 {
+    top: 18%; left: 5%;
+    background: rgba(0, 170, 255, 0.15);
+    border: 1px solid rgba(0, 170, 255, 0.4);
+    color: #00AAFF;
+    animation-delay: 0s;
+}
+.avito-label-2 {
+    top: 30%; right: 6%;
+    background: rgba(151, 207, 38, 0.15);
+    border: 1px solid rgba(151, 207, 38, 0.4);
+    color: #97CF26;
+    animation-delay: 0.5s;
+}
+.avito-label-3 {
+    bottom: 30%; left: 4%;
+    background: rgba(255, 97, 99, 0.15);
+    border: 1px solid rgba(255, 97, 99, 0.4);
+    color: #FF6163;
+    animation-delay: 1s;
+}
+.avito-label-4 {
+    bottom: 22%; right: 5%;
+    background: rgba(161, 105, 247, 0.15);
+    border: 1px solid rgba(161, 105, 247, 0.4);
+    color: #A169F7;
+    animation-delay: 1.5s;
+}
+.avito-label-5 {
+    top: 50%; left: 2%;
+    background: rgba(0, 170, 255, 0.12);
+    border: 1px solid rgba(0, 170, 255, 0.3);
+    color: #00AAFF;
+    animation-delay: 0.7s;
+    font-size: 0.8rem;
+}
+.avito-label-6 {
+    top: 45%; right: 3%;
+    background: rgba(151, 207, 38, 0.12);
+    border: 1px solid rgba(151, 207, 38, 0.3);
+    color: #97CF26;
+    animation-delay: 1.2s;
+    font-size: 0.8rem;
+}
+
+/* Avito word in title */
+.avito-word {
+    color: #00AAFF;
+    position: relative;
+}
+.avito-word::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #00AAFF, #97CF26, #FF6163, #A169F7);
+    border-radius: 2px;
+}
+
+/* Bigger buttons */
+.btn-big {
+    font-size: 1.15rem;
+    padding: 18px 40px;
+}
+
 .hero-title {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 24px;
     letter-spacing: -0.02em;
+}
+.hero-title-big {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    margin-bottom: 32px;
 }
 .hero-subtitle {
     font-size: clamp(1rem, 2vw, 1.25rem);
@@ -1151,8 +1256,13 @@ ul { list-style: none; }
     }
     .hero-content { padding: 100px 20px 60px; }
     .hero-title { font-size: 2.2rem; }
+    .hero-title-big { font-size: 2.5rem; }
     .hero-subtitle { font-size: 1rem; }
     .hero-buttons { flex-direction: column; align-items: center; }
+    .hero-badge-avito { font-size: 1.8rem; padding: 12px 28px; letter-spacing: 2px; }
+    .avito-label { font-size: 0.7rem; padding: 6px 14px; }
+    .avito-label-5, .avito-label-6 { display: none; }
+    .btn-big { font-size: 1rem; padding: 14px 28px; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
     .hero-btn-col .btn { min-width: auto; font-size: 0.85rem; padding: 12px 16px; }
@@ -1186,6 +1296,9 @@ ul { list-style: none; }
 @media (max-width: 480px) {
     .container { padding: 0 16px; }
     .hero-title { font-size: 1.8rem; }
+    .hero-title-big { font-size: 2rem; }
+    .hero-badge-avito { font-size: 1.4rem; padding: 10px 20px; }
+    .avito-label { display: none; }
     .btn { padding: 14px 24px; font-size: 0.9rem; }
     .btn-large { padding: 16px 28px; font-size: 1rem; }
     .pricing-card { padding: 24px; }
