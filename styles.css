@@ -257,23 +257,10 @@ ul { list-style: none; }
     letter-spacing: 0.5px;
 }
 .hero-badge-large {
-    position: relative;
     font-size: 2.8rem;
     padding: 16px 48px;
     letter-spacing: 3px;
     font-weight: 900;
-    border: 2px solid rgba(52, 211, 153, 0.4);
-    background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.06));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: unset;
-    background-clip: unset;
-}
-.hero-badge-large span {
-    background: linear-gradient(135deg, #34d399, #06b6d4, #10b981);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.4));
 }
 
 .hero-title {
