@@ -242,7 +242,7 @@ ul { list-style: none; }
     position: relative;
     z-index: 2;
     text-align: left;
-    padding: 10vh 24px 80px;
+    padding: 5vh 24px 80px;
     max-width: 55%;
     margin-left: 5%;
     margin-right: auto;
@@ -307,7 +307,7 @@ ul { list-style: none; }
     gap: 40px;
     flex-wrap: wrap;
     position: absolute;
-    bottom: 0vh;
+    bottom: 5vh;
     left: 0;
     right: 0;
     z-index: 2;
@@ -340,10 +340,11 @@ ul { list-style: none; }
 }
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    padding-bottom: 10px;
 }
 .scroll-arrow {
     width: 24px;
