@@ -367,7 +367,6 @@ ul { list-style: none; }
 
 /* ===== SECTIONS ===== */
 .section { padding: 100px 0; position: relative; }
-.section.about-me { margin-top: 5vh; }
 .section:nth-child(even) { background: var(--bg-section); }
 .section-header { text-align: center; margin-bottom: 60px; }
 .section-tag {
@@ -1225,8 +1224,9 @@ ul { list-style: none; }
         display: block;
         text-align: center;
     }
-    .hero { zoom: 0.38; }
+    .hero { zoom: 0.38; padding-bottom: 80px; }
     .hero-photo-bg { height: 65%; }
+    .scroll-indicator { bottom: 20px; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
