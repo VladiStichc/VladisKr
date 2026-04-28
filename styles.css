@@ -252,7 +252,7 @@ ul { list-style: none; }
     right: -5%;
     top: 40%;
     transform: translateY(-50%);
-    height: 90%;
+    height: 85%;
     z-index: 1;
     pointer-events: none;
 }
