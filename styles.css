@@ -1219,7 +1219,15 @@ ul { list-style: none; }
         display: block;
         text-align: center;
     }
-    .hero { zoom: 0.55; }
+    .hero-content { padding: 80px 16px 40px; }
+    .hero-title { font-size: clamp(1.3rem, 5vw, 2rem); }
+    .hero-badge-large { font-size: 0.75rem; padding: 6px 14px; }
+    .hero-subtitle { font-size: 0.75rem; }
+    .hero-buttons .btn { padding: 10px 18px; font-size: 0.8rem; }
+    .hero-stat-number { font-size: 1.5rem; }
+    .hero-stat-label { font-size: 0.6rem; }
+    .hero-stats { gap: 16px; }
+    .hero-photo-bg { height: 80%; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
