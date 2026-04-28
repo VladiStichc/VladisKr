@@ -258,9 +258,9 @@ ul { list-style: none; }
     letter-spacing: 0.5px;
 }
 .hero-badge-large {
-    font-size: 2.8rem;
-    padding: 16px 48px;
-    letter-spacing: 3px;
+    font-size: 2rem;
+    padding: 16px 40px;
+    letter-spacing: 2px;
     font-weight: 900;
 }
 
@@ -1116,6 +1116,55 @@ ul { list-style: none; }
     animation: float 6s ease-in-out infinite;
 }
 
+/* ===== ABOUT ME ===== */
+.about-me-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.about-me-intro {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    text-align: center;
+}
+.about-me-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+.about-me-point {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+}
+.about-me-point:hover {
+    border-color: rgba(124,58,237,0.3);
+    transform: translateY(-2px);
+}
+.about-me-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+.about-me-point strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+.about-me-point p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
@@ -1154,7 +1203,8 @@ ul { list-style: none; }
     }
     .hero-content { padding: 100px 20px 60px; }
     .hero-title { font-size: 2.2rem; }
-    .hero-badge-large { font-size: 1.8rem; padding: 12px 28px; }
+    .hero-badge-large { font-size: 1.1rem; padding: 10px 20px; letter-spacing: 1px; }
+    .about-me-points { grid-template-columns: 1fr; }
     .hero-subtitle { font-size: 1rem; }
     .hero-buttons { flex-direction: column; align-items: center; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
