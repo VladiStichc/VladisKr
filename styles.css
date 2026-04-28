@@ -1220,6 +1220,7 @@ ul { list-style: none; }
         text-align: center;
     }
     .hero { zoom: 0.38; }
+    .hero-photo-bg { height: 75%; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
