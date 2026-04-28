@@ -243,13 +243,13 @@ ul { list-style: none; }
     z-index: 2;
     text-align: left;
     padding: 120px 24px 80px;
-    max-width: 900px;
-    margin-left: auto;
+    max-width: 55%;
+    margin-left: 5%;
     margin-right: auto;
 }
 .hero-photo-bg {
     position: absolute;
-    right: 10%;
+    right: 5%;
     top: 50%;
     transform: translateY(-50%);
     height: 90%;
