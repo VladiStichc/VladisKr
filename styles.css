@@ -1219,10 +1219,7 @@ ul { list-style: none; }
         display: block;
         text-align: center;
     }
-    .hero { zoom: 0.38; min-height: 265vh; }
-    .hero-content { display: flex; flex-direction: column; min-height: calc(265vh - 200px); }
-    .hero-buttons { margin-top: auto; }
-    .hero-stats { margin-bottom: 0; }
+    .hero { zoom: 0.38; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
