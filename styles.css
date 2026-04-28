@@ -247,24 +247,27 @@ ul { list-style: none; }
 }
 .hero-split {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     max-width: 1200px;
-    gap: 40px;
+    gap: 0;
     text-align: left;
 }
 .hero-text {
     flex: 1;
     min-width: 0;
+    padding-bottom: 40px;
 }
 .hero-photo {
-    flex: 0 0 380px;
+    flex: 0 0 480px;
     display: flex;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: flex-end;
+    margin-right: -40px;
+    margin-bottom: -80px;
 }
 .hero-photo-img {
     width: 100%;
-    max-width: 380px;
+    max-width: 520px;
     height: auto;
     filter: drop-shadow(0 0 40px rgba(124, 58, 237, 0.3));
 }
@@ -1228,8 +1231,8 @@ ul { list-style: none; }
     .hero-title { font-size: 2.2rem; }
     .hero-badge-large { font-size: 1.1rem; padding: 10px 20px; letter-spacing: 1px; }
     .hero-split { flex-direction: column; text-align: center; gap: 20px; }
-    .hero-photo { flex: 0 0 auto; order: -1; }
-    .hero-photo-img { max-width: 260px; }
+    .hero-photo { flex: 0 0 auto; order: -1; margin-right: 0; margin-bottom: 0; }
+    .hero-photo-img { max-width: 280px; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-subtitle { font-size: 1rem; }
     .hero-buttons { flex-direction: column; align-items: center; }
