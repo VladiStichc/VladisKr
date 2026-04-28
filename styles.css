@@ -243,7 +243,7 @@ ul { list-style: none; }
     position: relative;
     z-index: 2;
     text-align: left;
-    padding: 120px 24px 80px;
+    padding: calc(120px + 10vh) 24px 80px;
     max-width: 55%;
     margin-left: 5%;
     margin-right: auto;
