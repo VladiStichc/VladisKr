@@ -306,6 +306,10 @@ ul { list-style: none; }
     justify-content: center;
     gap: 40px;
     flex-wrap: wrap;
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .hero-stat { text-align: center; }
 .hero-stat-number {
