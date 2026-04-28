@@ -281,6 +281,13 @@ ul { list-style: none; }
     padding: 16px 40px;
     letter-spacing: 2px;
     font-weight: 900;
+    line-height: 1.4;
+}
+.hero-badge-white {
+    color: #ffffff;
+}
+.hero-badge-purple {
+    color: var(--neon-purple);
 }
 
 .hero-title {
