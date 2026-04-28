@@ -222,7 +222,8 @@ ul { list-style: none; }
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
+    margin-bottom: 60px;
     background: radial-gradient(ellipse at 30% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
                 radial-gradient(ellipse at 70% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
                 var(--bg-dark);
@@ -340,7 +341,7 @@ ul { list-style: none; }
 }
 .scroll-indicator {
     position: absolute;
-    bottom: -80px;
+    bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
