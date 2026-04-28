@@ -265,10 +265,11 @@ ul { list-style: none; }
     justify-content: center;
     position: relative;
     z-index: 1;
-    margin-left: -5%;
+    margin-left: -10%;
+    pointer-events: none;
 }
 .hero-photo-img {
-    width: 130%;
+    width: 140%;
     height: auto;
     filter: drop-shadow(0 0 40px rgba(124, 58, 237, 0.3));
 }
