@@ -313,7 +313,24 @@ ul { list-style: none; }
     right: 0;
     z-index: 2;
 }
-.hero-stat { text-align: center; }
+.hero-stat {
+    text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 16px;
+    padding: 20px 30px;
+    background: rgba(10, 10, 15, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.hero-stat-title {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--neon-purple);
+    margin-bottom: 8px;
+}
 .hero-stat-number {
     font-size: 2.5rem;
     font-weight: 900;
