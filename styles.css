@@ -249,7 +249,7 @@ ul { list-style: none; }
 }
 .hero-photo-bg {
     position: absolute;
-    right: 5%;
+    right: 0%;
     top: 50%;
     transform: translateY(-50%);
     height: 90%;
