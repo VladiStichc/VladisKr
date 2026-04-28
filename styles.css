@@ -1244,7 +1244,7 @@ ul { list-style: none; }
     }
     .hero { zoom: 0.38; padding-bottom: 160px; overflow: visible; margin-bottom: 30px; }
     .hero-content { padding-top: 30vh; }
-    .hero-photo-bg { height: 65%; }
+    .hero-photo-bg { height: 65%; top: 45%; right: -5%; }
     .scroll-indicator { bottom: -60px; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
