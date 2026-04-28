@@ -242,7 +242,7 @@ ul { list-style: none; }
     position: relative;
     z-index: 2;
     text-align: left;
-    padding: 5vh 24px 80px;
+    padding: 10vh 24px 80px;
     max-width: 55%;
     margin-left: 5%;
     margin-right: auto;
@@ -307,7 +307,7 @@ ul { list-style: none; }
     gap: 40px;
     flex-wrap: wrap;
     position: absolute;
-    bottom: 5vh;
+    bottom: 0vh;
     left: 0;
     right: 0;
     z-index: 2;
