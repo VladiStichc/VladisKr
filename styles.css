@@ -318,7 +318,7 @@ ul { list-style: none; }
     gap: 40px;
     flex-wrap: wrap;
     position: absolute;
-    bottom: 1vh;
+    bottom: -1vh;
     left: 0;
     right: 0;
     z-index: 2;
@@ -1262,7 +1262,7 @@ ul { list-style: none; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
     .hero-btn-col .btn { min-width: auto; font-size: 0.85rem; padding: 12px 16px; }
-    .hero-stats { gap: 24px; bottom: 5vh; }
+    .hero-stats { gap: 24px; bottom: 7vh; }
     .hero-buttons { margin-bottom: 60px; }
     .hero-stat-number { font-size: 2rem; }
     .hero-stat-divider { display: none; }
