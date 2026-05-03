@@ -237,6 +237,41 @@ ul { list-style: none; }
 .btn-outline:hover {
     background: rgba(139, 92, 246, 0.1);
 }
+/* Snake border animation for specific buttons */
+.btn-snake-anim {
+    border: none;
+    overflow: visible;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+.btn-snake-anim::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(from var(--snake-angle, 0deg), transparent 0%, transparent 60%, #8b5cf6 75%, #06b6d4 85%, #8b5cf6 95%, transparent 100%);
+    z-index: -1;
+    animation: btn-snake-rotate 2s linear infinite;
+    pointer-events: none;
+}
+.btn-snake-anim::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--bg-dark);
+    z-index: -1;
+}
+@keyframes btn-snake-rotate {
+    from { --snake-angle: 0deg; }
+    to { --snake-angle: 360deg; }
+}
+@property --snake-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
 .btn-3d {
     box-shadow: 0 4px 0 rgba(109, 40, 217, 0.8), 0 8px 20px rgba(0,0,0,0.3);
     transform: translateY(0);
