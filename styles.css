@@ -1257,11 +1257,12 @@ ul { list-style: none; }
     .hero-content { padding-top: 30vh; }
     .hero-photo-bg { height: 65%; top: 45%; right: -5%; }
     .badge-br-mobile { display: inline; }
+    .hero-badge-large { font-size: 2.8rem; padding: 22px 50px; }
     .scroll-indicator { bottom: -60px; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
-    .hero-btn-col .btn { min-width: auto; font-size: 1.05rem; padding: 16px 24px; font-weight: 800; }
+    .hero-btn-col .btn { min-width: auto; font-size: 1.3rem; padding: 20px 32px; font-weight: 800; }
     .hero-stats { gap: 24px; bottom: 5vh; }
     .hero-buttons { margin-bottom: 60px; }
     .hero-stat-number { font-size: 2rem; }
