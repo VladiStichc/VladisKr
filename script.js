@@ -91,16 +91,16 @@ if (ncN > 0) {
 }
 
 function ncGo(n) {
-    ncCur = n;
+    ncCur = ((n % ncN) + ncN) % ncN;
     ncTrack.style.transform = `translateX(-${ncCur * 100}%)`;
     document.querySelectorAll('.nc-dot').forEach((d, i) => d.classList.toggle('active', i === ncCur));
     if (ncCtop) ncCtop.textContent = `${ncCur + 1} / ${ncN}`;
-    if (ncPrev) ncPrev.disabled = ncCur === 0;
-    if (ncNext) ncNext.disabled = ncCur === ncN - 1;
+    if (ncPrev) ncPrev.disabled = false;
+    if (ncNext) ncNext.disabled = false;
 }
 
-if (ncPrev) ncPrev.addEventListener('click', () => ncCur > 0 && ncGo(ncCur - 1));
-if (ncNext) ncNext.addEventListener('click', () => ncCur < ncN - 1 && ncGo(ncCur + 1));
+if (ncPrev) ncPrev.addEventListener('click', () => ncGo(ncCur - 1));
+if (ncNext) ncNext.addEventListener('click', () => ncGo(ncCur + 1));
 
 /* Touch swipe for new carousel */
 let ncSx = 0;
@@ -108,8 +108,8 @@ if (ncTrack) {
     ncTrack.parentElement.addEventListener('touchstart', e => { ncSx = e.touches[0].clientX; }, { passive: true });
     ncTrack.parentElement.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - ncSx;
-        if (dx < -40 && ncCur < ncN - 1) ncGo(ncCur + 1);
-        if (dx > 40 && ncCur > 0) ncGo(ncCur - 1);
+        if (dx < -40) ncGo(ncCur + 1);
+        if (dx > 40) ncGo(ncCur - 1);
     }, { passive: true });
 }
 
