@@ -27,7 +27,7 @@
 
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 body {
     font-family: var(--font);
     background: var(--bg-dark);
@@ -166,24 +166,7 @@ ul { list-style: none; }
     z-index: 1;
 }
 .nav-cta::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(
-        105deg,
-        transparent 0%,
-        transparent 35%,
-        rgba(255, 255, 255, 0.6) 45%,
-        rgba(255, 255, 255, 0.9) 50%,
-        rgba(255, 255, 255, 0.6) 55%,
-        transparent 65%,
-        transparent 100%
-    );
-    background-size: 250% 100%;
-    animation: btn-shine 2.5s ease-in-out infinite;
-    z-index: 2;
-    pointer-events: none;
+    display: none;
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-glow); }
 .nav-cta-group { display: flex; gap: 10px; align-items: center; }
