@@ -308,7 +308,7 @@ ul { list-style: none; }
     margin-left: auto;
     margin-right: auto;
 }
-.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 160px; }
 .hero-buttons-grid { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
 .hero-btn-col { display: flex; flex-direction: column; gap: 12px; }
 .hero-btn-col .btn { min-width: 200px; text-align: center; }
@@ -318,15 +318,12 @@ ul { list-style: none; }
     gap: 40px;
     flex-wrap: wrap;
     position: absolute;
-    bottom: 5vh;
+    bottom: 1vh;
     left: 0;
     right: 0;
     z-index: 2;
 }
-@media (min-width: 769px) {
-    .hero-stats { bottom: 1vh; }
-    .hero-buttons { margin-bottom: 140px; }
-}
+
 .hero-stat {
     text-align: center;
     border: 1px solid rgba(139, 92, 246, 0.3);
@@ -1265,7 +1262,8 @@ ul { list-style: none; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
     .hero-btn-col .btn { min-width: auto; font-size: 0.85rem; padding: 12px 16px; }
-    .hero-stats { gap: 24px; }
+    .hero-stats { gap: 24px; bottom: 5vh; }
+    .hero-buttons { margin-bottom: 60px; }
     .hero-stat-number { font-size: 2rem; }
     .hero-stat-divider { display: none; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
