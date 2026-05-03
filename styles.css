@@ -263,6 +263,19 @@ ul { list-style: none; }
     background: var(--accent-gradient);
     color: #fff;
 }
+.btn-primary::before,
+.nav-cta::before,
+.audit-btn-next::before,
+.btn-zoom::before {
+    background: conic-gradient(
+        from var(--btn-snake-angle, 0deg),
+        transparent 0%,
+        rgba(0, 0, 0, 0.8) 10%,
+        rgba(20, 10, 40, 0.9) 20%,
+        transparent 30%,
+        transparent 100%
+    );
+}
 .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
 .btn-outline {
     background: transparent;
