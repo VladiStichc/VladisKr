@@ -420,3 +420,104 @@ if (qfSubmit) qfSubmit.addEventListener('click', function () {
     document.querySelector('.quick-form-desc').style.display = 'none';
     document.getElementById('qfSuccess').style.display = 'block';
 });
+
+/* ===== FORM MODAL (Оставить заявку popup) ===== */
+var formModal = document.getElementById('formModal');
+var formModalClose = document.getElementById('formModalClose');
+
+function openFormModal() {
+    formModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeFormModal() {
+    formModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+if (formModalClose) formModalClose.addEventListener('click', closeFormModal);
+if (formModal) formModal.addEventListener('click', function (e) {
+    if (e.target === formModal) closeFormModal();
+});
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && formModal.classList.contains('active')) closeFormModal();
+});
+
+/* Form modal submit */
+var fmSubmit = document.getElementById('fmSubmit');
+if (fmSubmit) fmSubmit.addEventListener('click', function () {
+    var name = document.getElementById('fmName').value.trim();
+    var phone = document.getElementById('fmPhone').value.trim();
+    var email = document.getElementById('fmEmail').value.trim();
+    var niche = document.getElementById('fmNiche').value.trim();
+    if (!name && !phone) { document.getElementById('fmName').classList.add('error'); return; }
+    document.getElementById('fmName').classList.remove('error');
+
+    var msg = '📩 <b>Новая заявка с сайта (popup)</b>\n\n'
+        + '👤 <b>Имя:</b> ' + (name || '—') + '\n'
+        + '📞 <b>Телефон:</b> ' + (phone || '—') + '\n'
+        + '📧 <b>Email:</b> ' + (email || '—') + '\n'
+        + '🏢 <b>Чем занимаетесь:</b> ' + (niche || '—');
+
+    if (TG_BOT_TOKEN && TG_CHAT_ID) {
+        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' })
+        }).catch(function () {});
+    }
+
+    document.getElementById('formModalFields').style.display = 'none';
+    document.getElementById('formModalSuccess').style.display = 'block';
+});
+
+/* ===== CASES MODAL (Смотреть кейсы popup) ===== */
+var casesModal = document.getElementById('casesModal');
+var casesModalClose = document.getElementById('casesModalClose');
+var ncTrackModal = document.getElementById('ncTrackModal');
+var ncPrevModal = document.getElementById('ncPrevModal');
+var ncNextModal = document.getElementById('ncNextModal');
+var ncCtopModal = document.getElementById('ncCtopModal');
+var cmCur = 0;
+var cmN = 0;
+
+function openCasesModal() {
+    /* Clone slides from main carousel into modal */
+    if (ncTrackModal && ncTrack && ncTrackModal.children.length === 0) {
+        ncTrackModal.innerHTML = ncTrack.innerHTML;
+    }
+    cmN = ncTrackModal ? ncTrackModal.querySelectorAll('.nc-slide').length : 0;
+    cmCur = 0;
+    cmGo(0);
+    casesModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeCasesModal() {
+    casesModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+function cmGo(n) {
+    if (cmN === 0) return;
+    cmCur = ((n % cmN) + cmN) % cmN;
+    ncTrackModal.style.transform = 'translateX(-' + (cmCur * 100) + '%)';
+    if (ncCtopModal) ncCtopModal.textContent = (cmCur + 1) + ' / ' + cmN;
+}
+
+if (casesModalClose) casesModalClose.addEventListener('click', closeCasesModal);
+if (casesModal) casesModal.addEventListener('click', function (e) {
+    if (e.target === casesModal) closeCasesModal();
+});
+if (ncPrevModal) ncPrevModal.addEventListener('click', function () { cmGo(cmCur - 1); });
+if (ncNextModal) ncNextModal.addEventListener('click', function () { cmGo(cmCur + 1); });
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && casesModal.classList.contains('active')) closeCasesModal();
+});
+
+/* Touch swipe for cases modal carousel */
+var cmSx = 0;
+if (ncTrackModal) {
+    ncTrackModal.parentElement.addEventListener('touchstart', function (e) { cmSx = e.touches[0].clientX; }, { passive: true });
+    ncTrackModal.parentElement.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - cmSx;
+        if (dx < -40) cmGo(cmCur + 1);
+        if (dx > 40) cmGo(cmCur - 1);
+    }, { passive: true });
+}

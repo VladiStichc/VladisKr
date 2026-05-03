@@ -1483,6 +1483,17 @@ ul { list-style: none; }
     .contact-option { flex-direction: column; text-align: center; padding: 16px 12px; }
 }
 
+/* ===== CASES MODAL ===== */
+.cases-modal-content {
+    max-width: 900px !important;
+    width: 95vw !important;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.cases-modal-carousel .nc-track-wrap {
+    margin: 0;
+}
+
 /* ===== CONTACT MODAL ===== */
 .contact-modal-overlay {
     display: none;
