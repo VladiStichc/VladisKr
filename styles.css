@@ -1055,6 +1055,112 @@ ul { list-style: none; }
     background: var(--border-color);
 }
 
+/* ===== SERVICES GRID ===== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: var(--transition);
+}
+.service-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+.service-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 16px;
+}
+.service-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+.service-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+}
+.service-list li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 4px 0 4px 20px;
+    position: relative;
+    line-height: 1.5;
+}
+.service-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--neon-purple);
+    font-weight: 700;
+}
+.service-result {
+    background: rgba(139, 92, 246, 0.08);
+    border-left: 3px solid var(--neon-purple);
+    padding: 12px 16px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.service-result strong {
+    color: var(--neon-green);
+}
+.service-why {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 8px;
+}
+.service-examples {
+    margin: 12px 0;
+}
+.service-example {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+.example-bad {
+    color: rgba(255, 100, 100, 0.8);
+}
+.example-good {
+    color: var(--neon-green);
+}
+.service-example-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 8px;
+}
+.service-bid-example {
+    background: rgba(6, 182, 212, 0.06);
+    border: 1px solid rgba(6, 182, 212, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
 /* ===== CTA ===== */
 .cta {
     position: relative;
@@ -1384,6 +1490,7 @@ ul { list-style: none; }
     .approach-timeline::before { display: none; }
     .approach-step { flex-direction: column; gap: 12px; }
     .step-number { align-self: flex-start; }
+    .services-grid { grid-template-columns: 1fr; }
     .nc-slide-title { font-size: 18px; }
     .nc-kpi-pill { padding: 8px 10px; min-width: 70px; }
     .nc-kpi-val { font-size: 14px; }
