@@ -161,6 +161,33 @@ ul { list-style: none; }
     color: #fff;
     transition: var(--transition);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--btn-snake-angle, 0deg),
+        transparent 0%,
+        var(--neon-purple) 10%,
+        var(--neon-cyan) 20%,
+        transparent 30%,
+        transparent 100%
+    );
+    animation: btn-snake 3s linear infinite;
+    z-index: -2;
+}
+.nav-cta::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    background: var(--accent-gradient);
+    z-index: -1;
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-glow); }
 .nav-cta-group { display: flex; gap: 10px; align-items: center; }
@@ -190,6 +217,47 @@ ul { list-style: none; }
     border: none;
     transition: var(--transition);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--btn-snake-angle, 0deg),
+        transparent 0%,
+        var(--neon-purple) 10%,
+        var(--neon-cyan) 20%,
+        transparent 30%,
+        transparent 100%
+    );
+    animation: btn-snake 3s linear infinite;
+    z-index: -2;
+}
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    z-index: -1;
+}
+.btn-primary::after {
+    background: var(--accent-gradient);
+}
+.btn-outline::after {
+    background: var(--bg-dark);
+}
+@property --btn-snake-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+@keyframes btn-snake {
+    from { --btn-snake-angle: 0deg; }
+    to { --btn-snake-angle: 360deg; }
 }
 .btn-primary {
     background: var(--accent-gradient);
@@ -199,10 +267,9 @@ ul { list-style: none; }
 .btn-outline {
     background: transparent;
     color: var(--text-primary);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: none;
 }
 .btn-outline:hover {
-    border-color: var(--accent-primary);
     background: rgba(139, 92, 246, 0.1);
 }
 .btn-3d {
@@ -935,6 +1002,32 @@ ul { list-style: none; }
     transition: var(--transition);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-zoom::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--btn-snake-angle, 0deg),
+        transparent 0%,
+        var(--neon-purple) 10%,
+        var(--neon-cyan) 20%,
+        transparent 30%,
+        transparent 100%
+    );
+    animation: btn-snake 3s linear infinite;
+    z-index: -2;
+}
+.btn-zoom::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    background: rgba(139, 92, 246, 0.9);
+    z-index: -1;
 }
 .btn-zoom:hover {
     background: rgba(139, 92, 246, 1);
@@ -1584,6 +1677,38 @@ ul { list-style: none; }
     border: none;
     transition: all 0.2s;
     font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.audit-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--btn-snake-angle, 0deg),
+        transparent 0%,
+        var(--neon-purple) 10%,
+        var(--neon-cyan) 20%,
+        transparent 30%,
+        transparent 100%
+    );
+    animation: btn-snake 3s linear infinite;
+    z-index: -2;
+}
+.audit-btn::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    z-index: -1;
+}
+.audit-btn-next::after {
+    background: var(--neon-purple);
+}
+.audit-btn-back::after {
+    background: rgba(20, 20, 30, 0.95);
 }
 .audit-btn-back {
     background: rgba(255, 255, 255, 0.08);
