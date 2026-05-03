@@ -308,7 +308,7 @@ ul { list-style: none; }
     margin-left: auto;
     margin-right: auto;
 }
-.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 120px; }
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
 .hero-buttons-grid { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
 .hero-btn-col { display: flex; flex-direction: column; gap: 12px; }
 .hero-btn-col .btn { min-width: 200px; text-align: center; }
@@ -318,10 +318,14 @@ ul { list-style: none; }
     gap: 40px;
     flex-wrap: wrap;
     position: absolute;
-    bottom: 2vh;
+    bottom: 5vh;
     left: 0;
     right: 0;
     z-index: 2;
+}
+@media (min-width: 769px) {
+    .hero-stats { bottom: 1vh; }
+    .hero-buttons { margin-bottom: 140px; }
 }
 .hero-stat {
     text-align: center;
