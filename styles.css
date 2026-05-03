@@ -267,14 +267,25 @@ ul { list-style: none; }
 .nav-cta::before,
 .audit-btn-next::before,
 .btn-zoom::before {
-    background: conic-gradient(
-        from var(--btn-snake-angle, 0deg),
+    inset: 0;
+    background: linear-gradient(
+        105deg,
         transparent 0%,
-        rgba(0, 0, 0, 0.8) 10%,
-        rgba(20, 10, 40, 0.9) 20%,
-        transparent 30%,
+        transparent 35%,
+        rgba(255, 255, 255, 0.6) 45%,
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(255, 255, 255, 0.6) 55%,
+        transparent 65%,
         transparent 100%
     );
+    background-size: 250% 100%;
+    animation: btn-shine 2.5s ease-in-out infinite;
+    z-index: 2;
+    pointer-events: none;
+}
+@keyframes btn-shine {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
 .btn-outline {
@@ -1363,12 +1374,12 @@ ul { list-style: none; }
     .hero-content { padding-top: 30vh; }
     .hero-photo-bg { height: 65%; top: 45%; right: -5%; }
     .badge-br-mobile { display: inline; }
-    .hero-badge-large { font-size: 2.8rem; padding: 22px 50px; }
+
     .scroll-indicator { bottom: -60px; }
     .about-me-points { grid-template-columns: 1fr; }
     .hero-buttons-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; }
     .hero-btn-col { display: flex; flex-direction: column; gap: 10px; }
-    .hero-btn-col .btn { min-width: auto; font-size: 1.3rem; padding: 20px 32px; font-weight: 800; }
+    .hero-btn-col .btn { min-width: auto; font-size: 1.3rem; padding: 28px 32px; font-weight: 800; }
     .hero-stats { gap: 24px; bottom: 5vh; }
     .hero-buttons { margin-bottom: 60px; }
     .hero-stat-number { font-size: 2rem; }
