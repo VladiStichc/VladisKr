@@ -428,6 +428,8 @@ var formModalClose = document.getElementById('formModalClose');
 function openFormModal() {
     formModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.getElementById('formModalFields').style.display = '';
+    document.getElementById('formModalSuccess').style.display = 'none';
 }
 function closeFormModal() {
     formModal.classList.remove('active');
@@ -462,9 +464,15 @@ if (fmSubmit) fmSubmit.addEventListener('click', function () {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' })
-        }).catch(function () {});
+        }).then(function (r) { return r.json(); })
+          .then(function (data) { console.log('TG popup form:', data.ok ? 'sent' : data.description); })
+          .catch(function (err) { console.error('TG popup form error:', err); });
     }
 
+    document.getElementById('fmName').value = '';
+    document.getElementById('fmPhone').value = '';
+    document.getElementById('fmEmail').value = '';
+    document.getElementById('fmNiche').value = '';
     document.getElementById('formModalFields').style.display = 'none';
     document.getElementById('formModalSuccess').style.display = 'block';
 });
