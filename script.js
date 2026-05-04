@@ -459,22 +459,57 @@ if (fmSubmit) fmSubmit.addEventListener('click', function () {
         + '📧 <b>Email:</b> ' + (email || '—') + '\n'
         + '🏢 <b>Чем занимаетесь:</b> ' + (niche || '—');
 
-    if (TG_BOT_TOKEN && TG_CHAT_ID) {
-        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' })
-        }).then(function (r) { return r.json(); })
-          .then(function (data) { console.log('TG popup form:', data.ok ? 'sent' : data.description); })
-          .catch(function (err) { console.error('TG popup form error:', err); });
+    fmSubmit.disabled = true;
+    fmSubmit.textContent = 'Отправка...';
+
+    var url = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage';
+    var payload = JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' });
+
+    function showSuccess() {
+        document.getElementById('fmName').value = '';
+        document.getElementById('fmPhone').value = '';
+        document.getElementById('fmEmail').value = '';
+        document.getElementById('fmNiche').value = '';
+        document.getElementById('formModalFields').style.display = 'none';
+        document.getElementById('formModalSuccess').style.display = 'block';
+        fmSubmit.disabled = false;
+        fmSubmit.textContent = 'Отправить';
     }
 
-    document.getElementById('fmName').value = '';
-    document.getElementById('fmPhone').value = '';
-    document.getElementById('fmEmail').value = '';
-    document.getElementById('fmNiche').value = '';
-    document.getElementById('formModalFields').style.display = 'none';
-    document.getElementById('formModalSuccess').style.display = 'block';
+    function showError() {
+        fmSubmit.disabled = false;
+        fmSubmit.textContent = 'Отправить';
+    }
+
+    if (TG_BOT_TOKEN && TG_CHAT_ID) {
+        try {
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: payload
+            }).then(function (r) { return r.json(); })
+              .then(function (data) {
+                  if (data.ok) { showSuccess(); } else { showError(); }
+              })
+              .catch(function () {
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('POST', url, true);
+                  xhr.setRequestHeader('Content-Type', 'application/json');
+                  xhr.onload = function () { showSuccess(); };
+                  xhr.onerror = function () { showError(); };
+                  xhr.send(payload);
+              });
+        } catch (e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () { showSuccess(); };
+            xhr.onerror = function () { showError(); };
+            xhr.send(payload);
+        }
+    } else {
+        showSuccess();
+    }
 });
 
 /* ===== CASES MODAL (Смотреть кейсы popup) ===== */

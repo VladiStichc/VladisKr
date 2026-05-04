@@ -1498,6 +1498,13 @@ ul { list-style: none; }
     .floating-tg { bottom: 20px; right: 20px; width: 52px; height: 52px; }
     .desktop-only { display: none; }
     .contacts-grid { grid-template-columns: 1fr 1fr; }
+    .cases-modal-carousel .nc-nav {
+        position: static;
+        transform: none;
+        margin-top: 16px;
+        justify-content: center;
+        gap: 24px;
+    }
 }
 
 @media (max-width: 480px) {
