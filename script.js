@@ -113,6 +113,36 @@ if (ncTrack) {
     }, { passive: true });
 }
 
+/* ===== BID-MANAGER CAROUSEL ===== */
+const bmTrack = document.getElementById('bmTrack');
+const bmPrev = document.getElementById('bmPrev');
+const bmNext = document.getElementById('bmNext');
+const bmCounter = document.getElementById('bmCounter');
+const bmSlides = bmTrack ? bmTrack.querySelectorAll('.bm-slide') : [];
+const bmN = bmSlides.length;
+let bmCur = 0;
+
+function bmGo(n) {
+    bmCur = ((n % bmN) + bmN) % bmN;
+    bmTrack.style.transform = 'translateX(-' + (bmCur * 100) + '%)';
+    if (bmCounter) bmCounter.textContent = (bmCur + 1) + ' / ' + bmN;
+    if (bmPrev) bmPrev.disabled = false;
+    if (bmNext) bmNext.disabled = false;
+}
+
+if (bmPrev) bmPrev.addEventListener('click', function() { bmGo(bmCur - 1); });
+if (bmNext) bmNext.addEventListener('click', function() { bmGo(bmCur + 1); });
+
+if (bmTrack) {
+    var bmSx = 0;
+    bmTrack.parentElement.addEventListener('touchstart', function(e) { bmSx = e.touches[0].clientX; }, { passive: true });
+    bmTrack.parentElement.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].clientX - bmSx;
+        if (dx < -40) bmGo(bmCur + 1);
+        if (dx > 40) bmGo(bmCur - 1);
+    }, { passive: true });
+}
+
 /* ===== LIGHTBOX ===== */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
