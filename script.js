@@ -235,13 +235,33 @@ function sendTelegram(msg) {
     var url = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage?chat_id=' + encodeURIComponent(TG_CHAT_ID) + '&text=' + encodeURIComponent(msg) + '&parse_mode=HTML';
     var dbg = document.createElement('div');
     dbg.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#222;color:#0f0;padding:8px;font-size:11px;z-index:99999;word-break:break-all;';
-    dbg.textContent = 'Trying XHR...';
+    dbg.textContent = 'Trying iframe...';
     document.body.appendChild(dbg);
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onload = function() { dbg.textContent += ' | XHR status: ' + xhr.status + ' | ' + xhr.responseText.substring(0, 80); setTimeout(function() { window.location.href = '/spasibo/'; }, 1000); };
-    xhr.onerror = function() { dbg.textContent += ' | XHR ERROR. Trying window.open...'; try { var w = window.open(url, '_blank', 'width=1,height=1,left=-1000,top=-1000'); setTimeout(function() { if (w) w.close(); }, 2000); } catch(e) { dbg.textContent += ' popup blocked'; } setTimeout(function() { window.location.href = '/spasibo/'; }, 3000); };
-    xhr.send();
+    var iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    iframe.onload = function() {
+        dbg.textContent += ' | iframe loaded. Redirecting...';
+        setTimeout(function() { window.location.href = '/spasibo/'; }, 500);
+    };
+    iframe.src = url;
+    setTimeout(function() {
+        if (dbg.textContent.indexOf('loaded') === -1) {
+            dbg.textContent += ' | timeout. Trying form...';
+            var form = document.createElement('form');
+            form.method = 'GET';
+            form.action = url;
+            form.target = 'tgFrame';
+            form.style.display = 'none';
+            document.body.appendChild(form);
+            var f = document.createElement('iframe');
+            f.name = 'tgFrame';
+            f.style.display = 'none';
+            document.body.appendChild(f);
+            form.submit();
+            setTimeout(function() { window.location.href = '/spasibo/'; }, 1000);
+        }
+    }, 3000);
 }
 
 function updateAuditUI() {
