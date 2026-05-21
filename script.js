@@ -233,18 +233,8 @@ const TG_CHAT_ID = '-5218005748';
 
 function sendTelegram(msg) {
     var url = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage?chat_id=' + encodeURIComponent(TG_CHAT_ID) + '&text=' + encodeURIComponent(msg) + '&parse_mode=HTML';
-    var iframe = document.createElement('iframe');
-    iframe.name = 'tgHidden';
-    iframe.style.cssText = 'position:absolute;width:0;height:0;border:0;';
-    document.body.appendChild(iframe);
-    var form = document.createElement('form');
-    form.method = 'GET';
-    form.action = url;
-    form.target = 'tgHidden';
-    form.style.display = 'none';
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(function() { window.location.href = '/spasibo/'; }, 800);
+    new Image().src = url;
+    setTimeout(function() { window.location.href = '/spasibo/'; }, 500);
 }
 
 function updateAuditUI() {
