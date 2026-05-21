@@ -232,30 +232,9 @@ const TG_BOT_TOKEN = '8996445828:AAHe6j8c5pn2nI0p9LbbxsxaUIdEA20ZbwI';
 const TG_CHAT_ID = '-5218005748';
 
 function sendTelegram(msg) {
-    var form = document.createElement('form');
-    form.method = 'GET';
-    form.action = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage';
-    form.target = 'tgFrame';
-    var fields = {
-        chat_id: TG_CHAT_ID,
-        text: msg,
-        parse_mode: 'HTML'
-    };
-    for (var k in fields) {
-        var i = document.createElement('input');
-        i.type = 'hidden';
-        i.name = k;
-        i.value = fields[k];
-        form.appendChild(i);
-    }
-    var iframe = document.createElement('iframe');
-    iframe.name = 'tgFrame';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    form.style.display = 'none';
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(function() { window.location.href = '/spasibo/'; }, 1000);
+    var url = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage?chat_id=' + encodeURIComponent(TG_CHAT_ID) + '&text=' + encodeURIComponent(msg) + '&parse_mode=HTML';
+    window.open(url, '_blank');
+    setTimeout(function() { window.location.href = '/spasibo/'; }, 500);
 }
 
 function updateAuditUI() {
