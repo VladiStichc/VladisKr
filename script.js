@@ -231,6 +231,11 @@ let auditCur = 0;
 const TG_BOT_TOKEN = '8996445828:AAHe6j8c5pn2nI0p9LbbxsxaUIdEA20ZbwI';
 const TG_CHAT_ID = '-5218005748';
 
+function sendTelegram(msg) {
+    var url = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage?chat_id=' + encodeURIComponent(TG_CHAT_ID) + '&text=' + encodeURIComponent(msg) + '&parse_mode=HTML';
+    fetch(url, { method: 'GET' }).catch(function() {});
+}
+
 function updateAuditUI() {
     auditSteps.forEach(function (s) { s.classList.remove('active'); });
     var stepEl = document.querySelector('.audit-step[data-step="' + auditCur + '"]');
@@ -297,29 +302,17 @@ function sendAuditForm() {
         + '💬 <b>Комментарий:</b> ' + (data.comment || '—');
 
     if (TG_BOT_TOKEN && TG_CHAT_ID) {
-        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: TG_CHAT_ID,
-                text: msg,
-                parse_mode: 'HTML'
-            })
-        }).then(function (r) { return r.json(); }).then(function (d) {
-            if (!d.ok) console.error('Telegram error:', d);
-            if (auditFileInput.files.length > 0) {
-                var fd = new FormData();
-                fd.append('chat_id', TG_CHAT_ID);
-                fd.append('document', auditFileInput.files[0]);
-                fd.append('caption', '📎 Файл к заявке: ' + data.business);
-                fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendDocument', {
-                    method: 'POST',
-                    body: fd
-                }).then(function (r2) { return r2.json(); }).then(function (d2) {
-                    if (!d2.ok) console.error('Telegram file error:', d2);
-                }).catch(function (e2) { console.error('Telegram file fetch error:', e2); });
-            }
-        }).catch(function (e) { console.error('Telegram fetch error:', e); });
+        sendTelegram(msg);
+        if (auditFileInput.files.length > 0) {
+            var fd = new FormData();
+            fd.append('chat_id', TG_CHAT_ID);
+            fd.append('document', auditFileInput.files[0]);
+            fd.append('caption', '📎 Файл к заявке: ' + data.business);
+            fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendDocument', {
+                method: 'POST',
+                body: fd
+            }).catch(function() {});
+        }
     }
 
     auditCur = 6;
@@ -380,11 +373,7 @@ document.getElementById('tfSubmit').addEventListener('click', function () {
         + '💬 <b>Комментарий:</b> ' + (comment || '—');
 
     if (TG_BOT_TOKEN && TG_CHAT_ID) {
-        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' })
-        }).catch(function () {});
+        sendTelegram(msg);
     }
 
     document.getElementById('tariffFormFields').style.display = 'none';
@@ -408,11 +397,7 @@ if (qfSubmit) qfSubmit.addEventListener('click', function () {
         + '🏢 <b>Чем занимаетесь:</b> ' + (niche || '—');
 
     if (TG_BOT_TOKEN && TG_CHAT_ID) {
-        fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'HTML' })
-        }).catch(function () {});
+        sendTelegram(msg);
     }
 
     document.getElementById('qfSubmit').style.display = 'none';
@@ -476,37 +461,9 @@ if (fmSubmit) fmSubmit.addEventListener('click', function () {
         fmSubmit.textContent = 'Отправить';
     }
 
-    function showError() {
-        fmSubmit.disabled = false;
-        fmSubmit.textContent = 'Отправить';
-    }
-
     if (TG_BOT_TOKEN && TG_CHAT_ID) {
-        try {
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: payload
-            }).then(function (r) { return r.json(); })
-              .then(function (data) {
-                  if (data.ok) { showSuccess(); } else { showError(); }
-              })
-              .catch(function () {
-                  var xhr = new XMLHttpRequest();
-                  xhr.open('POST', url, true);
-                  xhr.setRequestHeader('Content-Type', 'application/json');
-                  xhr.onload = function () { showSuccess(); };
-                  xhr.onerror = function () { showError(); };
-                  xhr.send(payload);
-              });
-        } catch (e) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onload = function () { showSuccess(); };
-            xhr.onerror = function () { showError(); };
-            xhr.send(payload);
-        }
+        sendTelegram(msg);
+        showSuccess();
     } else {
         showSuccess();
     }
