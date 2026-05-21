@@ -235,12 +235,12 @@ function sendTelegram(msg) {
     var url = 'https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage?chat_id=' + encodeURIComponent(TG_CHAT_ID) + '&text=' + encodeURIComponent(msg) + '&parse_mode=HTML';
     var dbg = document.createElement('div');
     dbg.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#222;color:#0f0;padding:8px;font-size:11px;z-index:99999;word-break:break-all;';
-    dbg.textContent = 'SENDING...';
+    dbg.textContent = 'Trying XHR...';
     document.body.appendChild(dbg);
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
-    xhr.onload = function() { dbg.textContent += ' | OK: ' + xhr.responseText.substring(0, 80); setTimeout(function() { window.location.href = '/spasibo/'; }, 1000); };
-    xhr.onerror = function() { dbg.textContent += ' | ERROR'; setTimeout(function() { window.location.href = '/spasibo/'; }, 1000); };
+    xhr.onload = function() { dbg.textContent += ' | XHR status: ' + xhr.status + ' | ' + xhr.responseText.substring(0, 80); setTimeout(function() { window.location.href = '/spasibo/'; }, 1000); };
+    xhr.onerror = function() { dbg.textContent += ' | XHR ERROR. Trying window.open...'; try { var w = window.open(url, '_blank', 'width=1,height=1,left=-1000,top=-1000'); setTimeout(function() { if (w) w.close(); }, 2000); } catch(e) { dbg.textContent += ' popup blocked'; } setTimeout(function() { window.location.href = '/spasibo/'; }, 3000); };
     xhr.send();
 }
 
