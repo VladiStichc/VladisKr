@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://avitrafic.ru/sitemap.xml
+
+Host: avitrafic.ru

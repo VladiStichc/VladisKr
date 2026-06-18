@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="320" height="60">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c084fc;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="arrow" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon: chart with arrow -->
+  <g transform="translate(2, 2)">
+    <circle cx="28" cy="28" r="26" fill="url(#grad1)" opacity="0.12"/>
+    <circle cx="28" cy="28" r="26" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.4"/>
+    
+    <rect x="12" y="33" width="8" height="18" rx="2.5" fill="url(#grad2)" opacity="0.5"/>
+    <rect x="24" y="23" width="8" height="28" rx="2.5" fill="url(#grad2)" opacity="0.7"/>
+    <rect x="36" y="13" width="8" height="38" rx="2.5" fill="url(#grad2)" opacity="0.9"/>
+    
+    <path d="M40 11 L40 4 L47 11" fill="none" stroke="url(#arrow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="40" y1="18" x2="40" y2="4" stroke="url(#arrow)" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Text: AviTraffic -->
+  <text x="66" y="40" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="900" letter-spacing="-0.5">
+    <tspan fill="#ffffff">Avi</tspan><tspan fill="url(#grad2)">Traffic</tspan>
+  </text>
+</svg>
